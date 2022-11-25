@@ -5,8 +5,11 @@ import { TweetsProvider } from "./Context/TweetProvider";
 function App() {
   return (
     <TweetsProvider>
-      <SideBar/>
-      <ListTweets />
+      <main className="bg-gray-900">
+        <SideBar />
+
+        <ListTweets />
+      </main>
     </TweetsProvider>
   );
 }

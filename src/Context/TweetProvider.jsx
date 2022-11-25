@@ -5,30 +5,33 @@ const TweetsContext = createContext();
 
 const TweetsProvider = ({ children }) => {
   const [tweets, setTweets] = useState([]);
-  const [user, setUser ] = useState("")
+  const [user, setUser] = useState("");
+  const [limit, setLimit] = useState(10);
 
   useEffect(() => {
     const consultarTweets = async () => {
-      const url = `http://localhost:8000/${user}`;
+      const url = `http://localhost:8000/${user || `?limit=${limit}`}`;
       const { data } = await axios(url);
       setTweets(data);
     };
     consultarTweets();
-  }, [user]);
+  }, [user, limit]);
 
-
-
-  const handleBusqueda = e => {
-    setUser(e.target.value)
-  }
+  const handleBusqueda = (e) => {
+    setUser(e.target.value);
+  };
+  const handleLimit = (e) => {
+    setLimit(e.target.value);
+  };
 
   return (
     <TweetsContext.Provider
       value={{
         tweets,
         handleBusqueda,
-        user
-       
+        user,
+        limit,
+        handleLimit,
       }}
     >
       {children}
