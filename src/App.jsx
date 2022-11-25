@@ -5,7 +5,7 @@ import { TweetsProvider } from "./Context/TweetProvider";
 function App() {
   return (
     <TweetsProvider>
-      <main className="bg-gray-900">
+      <main className="bg-gray-900 min-h-screen">
         <SideBar />
 
         <ListTweets />
